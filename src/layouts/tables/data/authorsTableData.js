@@ -27,6 +27,7 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 import React, { useEffect, useState } from "react";
+import { Autorenew } from "@mui/icons-material";
 
 export default function data() {
   const Author = ({ image, name, email }) => (
@@ -61,11 +62,258 @@ export default function data() {
 
   const [users, setUsers] = useState([]);
 
+  const params = {
+    draw: 1,
+    columns: [
+      {
+        data: "chk",
+        name: "",
+        searchable: true,
+        orderable: false,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "sinc_status",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "setor",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "id_cli",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "nome_cli",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "localizador",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "descricao",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "prev_con",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "pp",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "TamaX",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "TamaY",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Vista",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Prazo",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Arq",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Gav",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Pasta",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "Filmes",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "img",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "tag",
+        name: "",
+        searchable: true,
+        orderable: false,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "prof_opt",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+      {
+        data: "os_emitida",
+        name: "",
+        searchable: true,
+        orderable: true,
+        search: {
+          value: "",
+          regex: false,
+        },
+      },
+    ],
+    order: [
+      {
+        column: 5,
+        dir: "desc",
+      },
+    ],
+    start: 0,
+    length: "100",
+    search: {
+      value: "",
+      regex: false,
+      like: 0,
+      filterhead: {
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        18: "",
+        19: "",
+        20: "",
+      },
+      taghide: {},
+    },
+  };
+
+  const options = {
+    method: "POST",
+    body: JSON.stringify(params),
+  };
+
   const fetchUserData = async () => {
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users");
+      const response = await fetch(
+        "https://printmetais.com.br/sistema/produto/processalista",
+        options
+      );
       const data = await response.json();
-      setUsers(data);
+      setUsers(data.data);
     } catch (error) {
       // Handle error
       console.error(error);
@@ -79,12 +327,15 @@ export default function data() {
   const linha = [];
 
   const Rows = (users) => {
+    console.log(users);
     users.map((user) => {
       linha.push({
-        author: <Author image={team2} name={user.username} email={user.username}></Author>,
-        function: user.username,
+        author: (
+          <Author image={user.img_clean} nome={user.descricao_clean} email={user.setor}></Author>
+        ),
+        function: user.setor,
         status: 0,
-        employed: user.phone,
+        employed: user.setor,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit
