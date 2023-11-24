@@ -309,7 +309,7 @@ export default function data() {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        "https://printmetais.com.br/sistema/produto/processalista",
+        "https://printmetais.com.br/sistema/produto/key/RXdOQ2RNeS9wOC9YRG56ak80dW9yUT09",
         options
       );
       const data = await response.json();
